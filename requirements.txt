@@ -1,0 +1,2 @@
+kanboard==1.0.1
+python-gitlab==0.20
