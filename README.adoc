@@ -5,13 +5,13 @@ Command-line script to migrate Gitlab issues to Kanboard.
 
 Author: Juracy Filho
 
-== Instalation
+== Installation
 
 [source,bash]
 --
 git clone https://github.com/dataprev/kanboard-import-gitlab.git
 cd kanboard-import-gitlab
-pip install requirements/_base.txt
+pip install -r requirements/_base.txt
 --
 
 == Setup
