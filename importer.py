@@ -49,7 +49,7 @@ class GitlabImporter(object):
             if c['title'] in ('Em andamento', 'Fazendo')][0]['id']
         done = [c for c in columns if c['title'] in ('Done', 'Feito')][0]['id']
         self.users = self.kb.getAllUsers()
-        for issue in origin.issues.list(all=True):
+        for issue in reversed(origin.issues.list(all=True)):
             creator = self.get_user_id(issue.author.username)
             owner = None
             if issue.assignee:
