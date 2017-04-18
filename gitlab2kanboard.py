@@ -5,6 +5,7 @@ from importer import GitlabImporter
 
 
 def main():
+    # TODO: Better support for configuring international labels and columns
     labels = {
         'To Do': 'A fazer',
         'Doing': 'Em andamento',
