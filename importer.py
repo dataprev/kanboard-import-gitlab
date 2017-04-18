@@ -4,7 +4,10 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 
 class GitlabImporter(object):
-    def __init__(self):
+    def __init__(self, label_to_columns, done_column='Done'):
+        self.label_to_columns = label_to_columns
+        self.done_column = done_column
+
         # TODO: It should be optional
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -41,13 +44,7 @@ class GitlabImporter(object):
         print('Project {}/{} created, id: {} !'.format(
             namespace, project, self.target))
         self.project_users = self.kb.getProjectUsers(project_id=self.target)
-        columns = self.kb.getColumns(project_id=self.target)
-        todo = [c for c in columns if c['title'] in ('A fazer')][0]['id']
-        doing = [
-            c
-            for c in columns
-            if c['title'] in ('Em andamento', 'Fazendo')][0]['id']
-        done = [c for c in columns if c['title'] in ('Done', 'Feito')][0]['id']
+        self.columns = self.kb.getColumns(project_id=self.target)
         self.users = self.kb.getAllUsers()
         for issue in reversed(origin.issues.list(all=True)):
             creator = self.get_user_id(issue.author.username)
@@ -69,16 +66,13 @@ class GitlabImporter(object):
             if owner:
                 params['owner_id'] = self.check_member(owner)
 
-            if 'To Do' in issue.labels:
-                params['column_id'] = todo
-                params['tags'].remove('To Do')
-
-            if 'Doing' in issue.labels:
-                params['column_id'] = doing
-                params['tags'].remove('Doing')
+            for label, column in self.label_to_columns.items():
+                if label in issue.labels:
+                    params['column_id'] = self.get_column(column)
+                    params['tags'].remove(label)
 
             if (issue.state == 'closed'):
-                params['column_id'] = done
+                params['column_id'] = self.get_column(self.done_column)
 
             if not params['tags']:
                 del params['tags']
@@ -118,3 +112,8 @@ class GitlabImporter(object):
         found = [u['id'] for u in self.users if u['username'] == username]
         if found:
             return found[0]
+
+    def get_column(self, column):
+        for c in self.columns:
+            if c['title'] == column:
+                return c['id']

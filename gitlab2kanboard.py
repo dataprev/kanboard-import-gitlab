@@ -5,7 +5,12 @@ from importer import GitlabImporter
 
 
 def main():
-    importer = GitlabImporter()
+    labels = {
+        'To Do': 'A fazer',
+        'Doing': 'Em andamento',
+    }
+
+    importer = GitlabImporter(labels, 'Feito')
     importer.setup_gitlab(env('GITLAB_ENDPOINT'), env('GITLAB_TOKEN'))
     importer.setup_kanboard(
         env('KANBOARD_ENDPOINT'),
