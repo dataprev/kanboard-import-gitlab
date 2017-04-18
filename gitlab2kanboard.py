@@ -1,17 +1,21 @@
 #!/usr/bin/env python
 import sys
+from gettext import bindtextdomain, textdomain, gettext as _
 from envparse import env
 from importer import GitlabImporter
 
 
 def main():
+    bindtextdomain('gitlab2kanboard', 'locale')
+    textdomain('gitlab2kanboard')
+
     # TODO: Better support for configuring international labels and columns
     labels = {
-        'To Do': 'A fazer',
-        'Doing': 'Em andamento',
+        'To Do': _('Ready'),
+        'Doing': _('Work in progress'),
     }
 
-    importer = GitlabImporter(labels, 'Feito')
+    importer = GitlabImporter(labels)
     importer.setup_gitlab(env('GITLAB_ENDPOINT'), env('GITLAB_TOKEN'))
     importer.setup_kanboard(
         env('KANBOARD_ENDPOINT'),

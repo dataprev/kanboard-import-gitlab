@@ -1,12 +1,12 @@
 from kanboard import Kanboard
 from gitlab import Gitlab, requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
+from gettext import gettext as _
 
 
 class GitlabImporter(object):
-    def __init__(self, label_to_columns, done_column='Done'):
+    def __init__(self, label_to_columns):
         self.label_to_columns = label_to_columns
-        self.done_column = done_column
 
         # TODO: It should be optional
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -72,7 +72,7 @@ class GitlabImporter(object):
                     params['tags'].remove(label)
 
             if (issue.state == 'closed'):
-                params['column_id'] = self.get_column(self.done_column)
+                params['column_id'] = self.get_column(_('Done'))
 
             if not params['tags']:
                 del params['tags']
