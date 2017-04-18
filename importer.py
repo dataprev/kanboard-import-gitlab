@@ -35,8 +35,11 @@ class GitlabImporter(object):
         group = self.gl.groups.list(search=namespace)[0]
         origin = group.projects.list(search=project)[0]
 
-        self.target = self.kb.createProject(name='import')
-        print('Projeto {} criado !'.format(self.target))
+        count = 0
+        self.target = self.kb.createProject(
+            name='{}/{}'.format(namespace, project))
+        print('Project {}/{} created, id: {} !'.format(
+            namespace, project, self.target))
         self.project_users = self.kb.getProjectUsers(project_id=self.target)
         columns = self.kb.getColumns(project_id=self.target)
         todo = [c for c in columns if c['title'] in ('A fazer')][0]['id']
@@ -81,20 +84,28 @@ class GitlabImporter(object):
                 del params['tags']
 
             task = self.kb.createTask(**params)
-            if not task:
+            if task:
+                for comment in issue.notes.list(all=True):
+                    commenter_id = self.get_user_id(
+                        comment.author.username) or self.users[0]['id']
+                    self.kb.createComment(
+                        task_id=task,
+                        user_id=commenter_id,
+                        content=comment.body,
+                    )
+
+                if (issue.state == 'closed' and task):
+                    self.kb.closeTask(task_id=task)
+
+                count += 1
+                print('... issue {} migrated to task {} {}'.format(
+                    issue.iid,
+                    task,
+                    '(closed)' if issue.state == 'closed' else ''))
+            else:
                 print('Oops: ', issue.iid, ' => ', task)
 
-            for comment in issue.notes.list(all=True):
-                commenter_id = self.get_user_id(
-                    comment.author.username) or self.users[0]['id']
-                self.kb.createComment(
-                    task_id=task,
-                    user_id=commenter_id,
-                    content=comment.body,
-                )
-
-            if (issue.state == 'closed' and task):
-                self.kb.closeTask(task_id=task)
+        print('{} issue(s) migrated !'. format(count))
 
     def check_member(self, member):
         if str(member) not in self.project_users:
