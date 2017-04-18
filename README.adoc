@@ -1,5 +1,5 @@
-Gitlab2Kanboard
-===============
+Kanboard Gitlab import
+======================
 
 Command-line script to migrate Gitlab issues to Kanboard.
 
