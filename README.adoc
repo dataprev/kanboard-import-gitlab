@@ -1,0 +1,34 @@
+Gitlab2Kanboard
+===============
+
+Command-line script to migrate Gitlab issues to Kanboard.
+
+Author: Juracy Filho
+
+== Instalation
+
+[source,bash]
+--
+git clone https://github.com/dataprev/kanboard-import-gitlab.git
+cd kanboard-import-gitlab
+pip install requirements/_base.txt
+--
+
+== Setup
+
+[source,bash]
+--
+GITLAB_ENDPOINT=https://www.gitlab.com
+GITLAB_TOKEN=YYY
+
+KANBOARD_ENDPOINT=https://myaccount.kanboard.net
+KANBOARD_USER=jsonrpc
+KANBOARD_TOKEN=XXX
+--
+
+== Usage
+
+[source,bash]
+--
+./gitlab2kanboard namespace/project
+--
