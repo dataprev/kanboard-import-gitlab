@@ -41,7 +41,7 @@ class GitlabImporter(object):
         count = 0
         self.target = self.kb.createProject(
             name='{}/{}'.format(namespace, project))
-        print('Project {}/{} created, id: {} !'.format(
+        print(_('Project {}/{} created, id: {} !').format(
             namespace, project, self.target))
         self.project_users = self.kb.getProjectUsers(project_id=self.target)
         self.columns = self.kb.getColumns(project_id=self.target)
@@ -92,14 +92,14 @@ class GitlabImporter(object):
                     self.kb.closeTask(task_id=task)
 
                 count += 1
-                print('... issue {} migrated to task {} {}'.format(
+                print(_('... issue {} migrated to task {} {}').format(
                     issue.iid,
                     task,
-                    '(closed)' if issue.state == 'closed' else ''))
+                    _('(closed)') if issue.state == 'closed' else ''))
             else:
-                print('Oops: ', issue.iid, ' => ', task)
+                print(_('Oops: problem to import {}').format(issue.iid))
 
-        print('{} issue(s) migrated !'. format(count))
+        print(_('{} issue(s) migrated !'). format(count))
 
     def check_member(self, member):
         if str(member) not in self.project_users:

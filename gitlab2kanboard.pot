@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-04-18 10:28+BRT\n"
+"POT-Creation-Date: 2017-04-18 11:04+BRT\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,15 +15,35 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: gitlab2kanboard.py:10
+#: gitlab2kanboard.py:14
 msgid "Ready"
 msgstr ""
 
-#: gitlab2kanboard.py:11
+#: gitlab2kanboard.py:15
 msgid "Work in progress"
 msgstr ""
 
-#: importer.py:74
+#: importer.py:44
+msgid "Project {}/{} created, id: {} !"
+msgstr ""
+
+#: importer.py:75
 msgid "Done"
+msgstr ""
+
+#: importer.py:95
+msgid "... issue {} migrated to task {} {}"
+msgstr ""
+
+#: importer.py:98
+msgid "(closed)"
+msgstr ""
+
+#: importer.py:100
+msgid "Oops: problem to import {}"
+msgstr ""
+
+#: importer.py:102
+msgid "{} issue(s) migrated !"
 msgstr ""
 
