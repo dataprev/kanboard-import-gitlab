@@ -4,3 +4,5 @@ setup.cfg
 setup.py
 kanboard_gitlab/__init__.py
 kanboard_gitlab/importer.py
+kanboard_gitlab/locale/pt_BR/LC_MESSAGES/kanboard-gitlab.mo
+kanboard_gitlab/locale/pt_BR/LC_MESSAGES/kanboard-gitlab.po
