@@ -1,13 +1,16 @@
 #!/usr/bin/env python
 
+import os
 import sys
+import kanboard_gitlab
 from gettext import bindtextdomain, textdomain, gettext as _
 from envparse import env
 from kanboard_gitlab.importer import GitlabImporter
 
 
 def main():
-    bindtextdomain('kanboard-gitlab', 'kanboard_gitlab/locale')
+    path = os.path.join(os.path.dirname(kanboard_gitlab.__file__), 'locale')
+    bindtextdomain('kanboard-gitlab', path)
     textdomain('kanboard-gitlab')
 
     # TODO: Better support for configuring international labels and columns
