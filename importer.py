@@ -1,3 +1,4 @@
+import re
 from kanboard import Kanboard
 from gitlab import Gitlab, requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -7,6 +8,7 @@ from gettext import gettext as _
 class GitlabImporter(object):
     def __init__(self, label_to_columns):
         self.label_to_columns = label_to_columns
+        self.findlabel = re.compile(r'~([0-9]+)')
 
         # TODO: It should be optional
         requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -46,6 +48,7 @@ class GitlabImporter(object):
         self.project_users = self.kb.getProjectUsers(project_id=self.target)
         self.columns = self.kb.getColumns(project_id=self.target)
         self.users = self.kb.getAllUsers()
+        self.labels = origin.labels.list(all=True)
         for issue in reversed(origin.issues.list(all=True)):
             creator = self.get_user_id(issue.author.username)
             owner = None
@@ -80,12 +83,17 @@ class GitlabImporter(object):
             task = self.kb.createTask(**params)
             if task:
                 for comment in issue.notes.list(all=True):
+                    body = comment.body
+                    if 'label' in body:
+                        for l in self.findlabel.findall(body):
+                            body = body.replace('~{}'.format(l), self.get_label_by_id(l))
+
                     commenter_id = self.get_user_id(
                         comment.author.username) or self.users[0]['id']
                     self.kb.createComment(
                         task_id=task,
                         user_id=commenter_id,
-                        content=comment.body,
+                        content=body,
                     )
 
                 if (issue.state == 'closed' and task):
@@ -117,3 +125,8 @@ class GitlabImporter(object):
         for c in self.columns:
             if c['title'] == column:
                 return c['id']
+
+    def get_label_by_id(self, label):
+        # Some old versions of gitlab don't send id :(
+        found = [l.name for l in self.labels if l.id == int(label)]
+        return found[0] if found else '~{}'.format(label)
