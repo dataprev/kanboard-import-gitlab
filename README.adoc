@@ -3,7 +3,17 @@ Kanboard Gitlab import
 
 Command-line script to migrate Gitlab issues to Kanboard.
 
-Author: Juracy Filho
+- Author: Juracy Filho
+
+== Requirements
+
+- Gitlab >= 8.13.8
+- Kanboard >= 1.0.42
+
+[NOTE]
+--
+It may work with older versions, but tests are required.
+--
 
 == Installation
 
