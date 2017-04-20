@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-version = '0.5'
+version = '0.6'
 repo = 'https://github.com/dataprev/kanboard-import-gitlab'
 
 setup(
@@ -14,7 +14,7 @@ setup(
     download_url='{}/archive/{}.tar.gz'.format(repo, version),
     keywords=['gitlab', 'migration', 'kanboard'],
     classifiers=[],
-    scripts=['kanboard_gitlab/kanboard-gitlab'],
+    scripts=['kanboard-gitlab'],
     install_requires=[
         'envparse==0.2.0',
         'kanboard==1.0.1',

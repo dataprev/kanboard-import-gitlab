@@ -3,11 +3,11 @@
 import sys
 from gettext import bindtextdomain, textdomain, gettext as _
 from envparse import env
-from importer import GitlabImporter
+from kanboard_gitlab.importer import GitlabImporter
 
 
 def main():
-    bindtextdomain('kanboard-gitlab', 'locale')
+    bindtextdomain('kanboard-gitlab', 'kanboard_gitlab/locale')
     textdomain('kanboard-gitlab')
 
     # TODO: Better support for configuring international labels and columns

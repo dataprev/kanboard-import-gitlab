@@ -19,12 +19,10 @@ It may work with older versions, but tests are required.
 
 [source,bash]
 --
-git clone https://github.com/dataprev/kanboard-import-gitlab.git
-cd kanboard-import-gitlab
-pip install -r requirements/_base.txt
+pip install kanboard-gitlab
 --
 
-== Setup
+== Usage
 
 [source,bash]
 --
@@ -34,11 +32,6 @@ GITLAB_TOKEN=YYY
 KANBOARD_ENDPOINT=https://myaccount.kanboard.net
 KANBOARD_USER=jsonrpc
 KANBOARD_TOKEN=XXX
---
 
-== Usage
-
-[source,bash]
---
-./gitlab2kanboard namespace/project
+kanboard-gitlab namespace/project
 --
