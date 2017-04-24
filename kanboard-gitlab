@@ -36,6 +36,13 @@ def main():
         print(_('Please, configure environment variable(s) to continue...'))
         sys.exit(1)
 
+    if len(sys.argv) < 2:
+        print(_('kanbord-gitlab version {}').format(kanboard_gitlab.version))
+        print()
+        print(_('Please inform namespace and project name from gitlab:'))
+        print(_('{} namespace/project'.format(os.path.basename(sys.argv[0]))))
+        sys.exit(2)
+
     importer = GitlabImporter(labels)
     importer.setup_gitlab(env('GITLAB_ENDPOINT'), env('GITLAB_TOKEN'))
     importer.setup_kanboard(

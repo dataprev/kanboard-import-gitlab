@@ -1,6 +1,6 @@
 from distutils.core import setup
+from kanboard_gitlab import version
 
-version = '0.9'
 repo = 'https://github.com/dataprev/kanboard-import-gitlab'
 
 setup(
