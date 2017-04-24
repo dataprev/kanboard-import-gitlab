@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-04-18 11:04+BRT\n"
-"PO-Revision-Date: 2017-04-18 11:00+BRT\n"
+"Project-Id-Version: 1.1\n"
+"POT-Creation-Date: 2017-04-18 11:04+-03\n"
+"PO-Revision-Date: 2017-04-24 12:15+-03\n"
 "Last-Translator: Juracy Filho <juracy at gmail (dot) com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,35 +15,43 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: gitlab2kanboard.py:14
+#: kanboard-gitlab:13
+msgid "- Missing environment variable: {}"
+msgstr ""
+
+#: kanboard-gitlab:25
 msgid "Ready"
 msgstr ""
 
-#: gitlab2kanboard.py:15
+#: kanboard-gitlab:26
 msgid "Work in progress"
 msgstr ""
 
-#: importer.py:44
+#: kanboard-gitlab:36
+msgid "Please, configure environment variable(s) to continue..."
+msgstr ""
+
+#: kanboard_gitlab/importer.py:46
 msgid "Project {}/{} created, id: {} !"
 msgstr ""
 
-#: importer.py:75
+#: kanboard_gitlab/importer.py:78
 msgid "Done"
 msgstr ""
 
-#: importer.py:95
+#: kanboard_gitlab/importer.py:103
 msgid "... issue {} migrated to task {} {}"
 msgstr ""
 
-#: importer.py:98
+#: kanboard_gitlab/importer.py:106
 msgid "(closed)"
 msgstr ""
 
-#: importer.py:100
+#: kanboard_gitlab/importer.py:108
 msgid "Oops: problem to import {}"
 msgstr ""
 
-#: importer.py:102
+#: kanboard_gitlab/importer.py:110
 msgid "{} issue(s) migrated !"
 msgstr ""
 

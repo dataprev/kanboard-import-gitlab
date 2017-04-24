@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-04-18 11:10-0300\n"
-"PO-Revision-Date: 2017-04-18 11:54-0300\n"
+"POT-Creation-Date: 2017-04-24 12:18-0300\n"
+"PO-Revision-Date: 2017-04-24 12:18-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -14,38 +14,46 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 2.0.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: gitlab2kanboard.py:14
+#: kanboard-gitlab:13
+msgid "- Missing environment variable: {}"
+msgstr "- Variável de ambiente ausente: {}"
+
+#: kanboard-gitlab:25
 msgid "Ready"
 msgstr "A fazer"
 
-#: gitlab2kanboard.py:15
+#: kanboard-gitlab:26
 msgid "Work in progress"
 msgstr "Em andamento"
 
-#: importer.py:44
+#: kanboard-gitlab:36
+msgid "Please, configure environment variable(s) to continue..."
+msgstr "Por favor, configure a(s) variável(is) de ambiente para continuar..."
+
+#: kanboard_gitlab/importer.py:46
 msgid "Project {}/{} created, id: {} !"
 msgstr "Projeto {}/{} criado, id: {} !"
 
-#: importer.py:75
+#: kanboard_gitlab/importer.py:78
 msgid "Done"
 msgstr "Feito"
 
-#: importer.py:95
+#: kanboard_gitlab/importer.py:103
 msgid "... issue {} migrated to task {} {}"
 msgstr "... issue {} migrada para a tarefa {} {}"
 
-#: importer.py:98
+#: kanboard_gitlab/importer.py:106
 msgid "(closed)"
 msgstr "(fechado)"
 
-#: importer.py:100
+#: kanboard_gitlab/importer.py:108
 msgid "Oops: problem to import {}"
 msgstr "Oops: problemas ao importar {}"
 
-#: importer.py:102
+#: kanboard_gitlab/importer.py:110
 msgid "{} issue(s) migrated !"
 msgstr "{} issue(s) migrada(s) !"

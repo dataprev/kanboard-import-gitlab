@@ -8,6 +8,13 @@ from envparse import env
 from kanboard_gitlab.importer import GitlabImporter
 
 
+def checkenv(var):
+    if not env(var, default=None):
+        print(_('- Missing environment variable: {}').format(var))
+        return False
+    return True
+
+
 def main():
     path = os.path.join(os.path.dirname(kanboard_gitlab.__file__), 'locale')
     bindtextdomain('kanboard-gitlab', path)
@@ -18,6 +25,16 @@ def main():
         'To Do': _('Ready'),
         'Doing': _('Work in progress'),
     }
+
+    # Requirements
+    if [v for v in (
+        'GITLAB_ENDPOINT',
+        'GITLAB_TOKEN',
+        'KANBOARD_ENDPOINT',
+        'KANBOARD_TOKEN',
+    ) if not checkenv(v)]:
+        print(_('Please, configure environment variable(s) to continue...'))
+        sys.exit(1)
 
     importer = GitlabImporter(labels)
     importer.setup_gitlab(env('GITLAB_ENDPOINT'), env('GITLAB_TOKEN'))
