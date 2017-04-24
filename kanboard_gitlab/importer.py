@@ -37,8 +37,21 @@ class GitlabImporter(object):
             self.kanboard['token'])
 
     def migrate(self, namespace, project):
-        group = self.gl.groups.list(search=namespace)[0]
-        origin = group.projects.list(search=project)[0]
+        _groups = [
+            g for g in self.gl.groups.search(namespace) if g.name == namespace]
+        if not _groups:
+            print(_('Error: namespace {} not found !').format(namespace))
+            return False
+        group = _groups[0]
+
+        _projects = [
+            p for p in group.projects.list(search=project) if p.name == project]
+        if not _projects:
+            print(_('Error: project {} not found in namespace {} !').format(
+                project, namespace))
+            return False
+
+        origin = _projects[0]
 
         count = 0
         self.target = self.kb.createProject(
@@ -108,6 +121,7 @@ class GitlabImporter(object):
                 print(_('Oops: problem to import {}').format(issue.iid))
 
         print(_('{} issue(s) migrated !'). format(count))
+        return True
 
     def check_member(self, member):
         if str(member) not in self.project_users:

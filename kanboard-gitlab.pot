@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.1\n"
+"Project-Id-Version: 1.2\n"
 "POT-Creation-Date: 2017-04-18 11:04+-03\n"
-"PO-Revision-Date: 2017-04-24 12:15+-03\n"
+"PO-Revision-Date: 2017-04-24 13:04+-03\n"
 "Last-Translator: Juracy Filho <juracy at gmail (dot) com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -31,27 +31,47 @@ msgstr ""
 msgid "Please, configure environment variable(s) to continue..."
 msgstr ""
 
-#: kanboard_gitlab/importer.py:46
+#: kanboard-gitlab:40
+msgid "kanboard-gitlab version {}"
+msgstr ""
+
+#: kanboard-gitlab:42
+msgid "Please inform namespace and project name from gitlab:"
+msgstr ""
+
+#: kanboard-gitlab:43
+msgid "{} namespace/project"
+msgstr ""
+
+#: kanboard_gitlab/importer.py:43
+msgid "Error: namespace {} not found !"
+msgstr ""
+
+#: kanboard_gitlab/importer.py:50
+msgid "Error: project {} not found in namespace {} !"
+msgstr ""
+
+#: kanboard_gitlab/importer.py:59
 msgid "Project {}/{} created, id: {} !"
 msgstr ""
 
-#: kanboard_gitlab/importer.py:78
+#: kanboard_gitlab/importer.py:91
 msgid "Done"
 msgstr ""
 
-#: kanboard_gitlab/importer.py:103
+#: kanboard_gitlab/importer.py:116
 msgid "... issue {} migrated to task {} {}"
 msgstr ""
 
-#: kanboard_gitlab/importer.py:106
+#: kanboard_gitlab/importer.py:119
 msgid "(closed)"
 msgstr ""
 
-#: kanboard_gitlab/importer.py:108
+#: kanboard_gitlab/importer.py:121
 msgid "Oops: problem to import {}"
 msgstr ""
 
-#: kanboard_gitlab/importer.py:110
+#: kanboard_gitlab/importer.py:123
 msgid "{} issue(s) migrated !"
 msgstr ""
 

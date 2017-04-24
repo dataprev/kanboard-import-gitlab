@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
-"POT-Creation-Date: 2017-04-24 12:18-0300\n"
-"PO-Revision-Date: 2017-04-24 12:18-0300\n"
+"POT-Creation-Date: 2017-04-24 13:07-0300\n"
+"PO-Revision-Date: 2017-04-24 13:09-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -34,26 +34,46 @@ msgstr "Em andamento"
 msgid "Please, configure environment variable(s) to continue..."
 msgstr "Por favor, configure a(s) variável(is) de ambiente para continuar..."
 
-#: kanboard_gitlab/importer.py:46
+#: kanboard-gitlab:40
+msgid "kanboard-gitlab version {}"
+msgstr "kanboard-gitlab versão {}"
+
+#: kanboard-gitlab:42
+msgid "Please inform namespace and project name from gitlab:"
+msgstr "Por favor, informe o nome do grupo e do projeto no gitlab:"
+
+#: kanboard-gitlab:43
+msgid "{} namespace/project"
+msgstr "{} grupo/projeto"
+
+#: kanboard_gitlab/importer.py:43
+msgid "Error: namespace {} not found !"
+msgstr "Erro: grupo {} não encontrado !"
+
+#: kanboard_gitlab/importer.py:50
+msgid "Error: project {} not found in namespace {} !"
+msgstr "Erro: projeto {} não encontrado no grupo {} !"
+
+#: kanboard_gitlab/importer.py:59
 msgid "Project {}/{} created, id: {} !"
 msgstr "Projeto {}/{} criado, id: {} !"
 
-#: kanboard_gitlab/importer.py:78
+#: kanboard_gitlab/importer.py:91
 msgid "Done"
 msgstr "Feito"
 
-#: kanboard_gitlab/importer.py:103
+#: kanboard_gitlab/importer.py:116
 msgid "... issue {} migrated to task {} {}"
 msgstr "... issue {} migrada para a tarefa {} {}"
 
-#: kanboard_gitlab/importer.py:106
+#: kanboard_gitlab/importer.py:119
 msgid "(closed)"
 msgstr "(fechado)"
 
-#: kanboard_gitlab/importer.py:108
+#: kanboard_gitlab/importer.py:121
 msgid "Oops: problem to import {}"
 msgstr "Oops: problemas ao importar {}"
 
-#: kanboard_gitlab/importer.py:110
+#: kanboard_gitlab/importer.py:123
 msgid "{} issue(s) migrated !"
 msgstr "{} issue(s) migrada(s) !"
