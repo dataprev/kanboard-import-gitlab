@@ -1,6 +1,7 @@
 import re
 from kanboard import Kanboard
-from gitlab import Gitlab, requests
+from gitlab import Gitlab
+import requests
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from gettext import gettext as _
 
@@ -38,7 +39,7 @@ class GitlabImporter(object):
 
     def migrate(self, namespace, project):
         _groups = [
-            g for g in self.gl.groups.search(namespace) if g.name == namespace]
+            g for g in self.gl.groups.list(search=namespace) if g.name == namespace]
         if not _groups:
             print(_('Error: namespace {} not found !').format(namespace))
             return False
@@ -51,7 +52,7 @@ class GitlabImporter(object):
                 project, namespace))
             return False
 
-        origin = _projects[0]
+        origin = self.gl.projects.get(_projects[0].id, lazy=True)
 
         count = 0
         self.target = self.kb.createProject(
@@ -63,10 +64,10 @@ class GitlabImporter(object):
         self.users = self.kb.getAllUsers()
         self.labels = origin.labels.list(all=True)
         for issue in reversed(origin.issues.list(all=True)):
-            creator = self.get_user_id(issue.author.username)
+            creator = self.get_user_id(issue.author['username'])
             owner = None
             if issue.assignee:
-                owner = self.get_user_id(issue.assignee.username)
+                owner = self.get_user_id(issue.assignee['username'])
             params = {
                 'title': issue.title,
                 'project_id': self.target,
@@ -102,7 +103,7 @@ class GitlabImporter(object):
                             body = body.replace('~{}'.format(l), self.get_label_by_id(l))
 
                     commenter_id = self.get_user_id(
-                        comment.author.username) or self.users[0]['id']
+                        comment.author['username']) or self.users[0]['id']
                     self.kb.createComment(
                         task_id=task,
                         user_id=commenter_id,
